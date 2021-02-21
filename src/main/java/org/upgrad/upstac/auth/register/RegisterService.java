@@ -25,46 +25,34 @@ public class RegisterService {
 
 
     public User addUser(RegisterRequest registerRequest) {
-        if(userService.findByUserName(registerRequest.getUserName()) != null){
-            throw new AppException("User Name already exists");
-        }else if(userService.findByEmail(registerRequest.getEmail()) != null){
-            throw new AppException("Email already exists");
-        }else if(userService.findByPhoneNumber(registerRequest.getPhoneNumber()) != null){
-            throw new AppException("Phone Number already exists");
-        }else{
-            User newUser = userService.addUser(registerRequest);
+        try{
+            User newUser  = userService.addUser(registerRequest);
             userService.saveInDatabase(newUser);
             return newUser;
+        }catch (AppException error){
+            throw new AppException(error.getMessage());
         }
     }
 
     public User addDoctor(RegisterRequest registerRequest) {
 
-        if(userService.findByUserName(registerRequest.getUserName()) != null){
-            throw new AppException("User Name already exists");
-        }else if(userService.findByEmail(registerRequest.getEmail()) != null){
-            throw new AppException("Email already exists");
-        }else if(userService.findByPhoneNumber(registerRequest.getPhoneNumber()) != null){
-            throw new AppException("Phone Number already exists");
-        }else{
-            User newUser = userService.addDoctor(registerRequest);
-            userService.saveInDatabase(newUser);
-            return newUser;
+        try{
+            User newDoctor  = userService.addDoctor(registerRequest);
+            userService.saveInDatabase(newDoctor);
+            return newDoctor;
+        }catch (AppException error){
+            throw new AppException(error.getMessage());
         }
     }
 
 
     public User addTester(RegisterRequest registerRequest) {
-        if(userService.findByUserName(registerRequest.getUserName()) != null){
-            throw new AppException("User Name already exists");
-        }else if(userService.findByEmail(registerRequest.getEmail()) != null){
-            throw new AppException("Email already exists");
-        }else if(userService.findByPhoneNumber(registerRequest.getPhoneNumber()) != null){
-            throw new AppException("Phone Number already exists");
-        }else{
-            User newUser = userService.addTester(registerRequest);
-            userService.saveInDatabase(newUser);
-            return newUser;
+        try{
+            User newTester  = userService.addTester(registerRequest);
+            userService.saveInDatabase(newTester);
+            return newTester;
+        }catch (AppException error){
+            throw new AppException(error.getMessage());
         }
     }
 }
