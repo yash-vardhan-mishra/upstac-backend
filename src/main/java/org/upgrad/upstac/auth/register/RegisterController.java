@@ -33,41 +33,33 @@ public class RegisterController {
 
     @RequestMapping(value = "/auth/register", method = RequestMethod.POST)
     public User saveUser(@RequestBody RegisterRequest registerRequest) {
-/*
-        this method should call addUser function from registerService
-        if everything goes fine , it should return User object,
-        else if there is an error
-            the method should throw ResponseStatusException with HttpStatus.BAD_REQUEST
-*/
-
-
-
-
-        throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Not Implemented");
+        try{
+            User newUser = registerService.addUser(registerRequest);
+            return newUser;
+        }catch (AppException error){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, error.getMessage());
+        }
     }
 
 
     @RequestMapping(value = "/auth/doctor/register")
     public User saveDoctor(@RequestBody RegisterRequest registerRequest) {
-/*
-        this method should call addDoctor function from registerService
-        if everything goes fine , it should return User object,
-        else if there is an error
-            the method should throw ResponseStatusException with HttpStatus.BAD_REQUEST
-*/
-
-        throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Not Implemented");
+        try{
+            User newUser = registerService.addDoctor(registerRequest);
+            return newUser;
+        }catch (AppException error){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, error.getMessage());
+        }
     }
 
 
     @RequestMapping(value = "/auth/tester/register")
     public User saveTester(@RequestBody RegisterRequest registerRequest) {
-/*
-        this method should call addTester function from registerService
-        if everything goes fine , it should return User object,
-        else if there is an error
-            the method should throw ResponseStatusException with HttpStatus.BAD_REQUEST
-*/
-        throw new ResponseStatusException(HttpStatus.NOT_IMPLEMENTED, "Not Implemented");
+        try{
+            User newTester = registerService.addTester(registerRequest);
+            return newTester;
+        }catch (AppException error){
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, error.getMessage());
+        }
     }
 }
