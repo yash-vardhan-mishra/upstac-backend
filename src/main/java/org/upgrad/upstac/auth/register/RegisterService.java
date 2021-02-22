@@ -25,6 +25,10 @@ public class RegisterService {
 
 
     public User addUser(RegisterRequest registerRequest) {
+/*
+* didn't write the separate logic like the solution, used addUser, addDoctor and addTester
+* from userService which handled validation, added roles and status
+* */
         try{
             User newUser  = userService.addUser(registerRequest);
             userService.saveInDatabase(newUser);
